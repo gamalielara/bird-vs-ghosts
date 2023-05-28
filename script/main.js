@@ -1,3 +1,4 @@
+import { BackgroundLayer } from "./backgroundLayer.js";
 import { Bird } from "./bird.js";
 import { Ghost } from "./ghost.js";
 import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "./mainCanvas.js";
@@ -12,38 +13,83 @@ const birdPlayer = new Bird();
 
 let ghosts = [];
 
+class GameManager {
+  constructor(context) {
+    this.context = context;
+    this.backgrounds = [];
+
+    this.listenToKeyEvent();
+    this.setBackgroundImage();
+  }
+
+  setBackgroundImage() {
+    for (let i = 1; i < 10; i++) {
+      const bg = new Image();
+      bg.src = `./background/${i}.png`;
+
+      this.backgrounds.push(bg);
+    }
+
+    this.backgrounds = this.backgrounds.map(
+      (bg, i) => new BackgroundLayer(this.context, bg, 1 * (i + 1))
+    );
+  }
+
+  animateBackgrounds() {
+    this.backgrounds.forEach((bg) => bg.animate());
+  }
+
+  detectCollision() {
+    ghosts.forEach((ghost, i) => {
+      const isCollided =
+        birdPlayer.x < ghost.x + ghost.width &&
+        birdPlayer.x + birdPlayer.width > ghost.x &&
+        birdPlayer.y < ghost.y + ghost.height &&
+        birdPlayer.y + birdPlayer.height > ghost.y;
+
+      if (isCollided) {
+        ghosts.splice(i, 1);
+      }
+    });
+  }
+
+  listenToKeyEvent() {
+    window.addEventListener("keydown", (e) => {
+      switch (e.keyCode) {
+        case 38:
+          birdPlayer.moveUp();
+          break;
+        case 40:
+          birdPlayer.moveDown();
+          break;
+        case 37:
+          birdPlayer.moveLeft();
+          break;
+        case 39:
+          birdPlayer.moveRight();
+          break;
+        default:
+          break;
+      }
+    });
+  }
+}
+
+const game = new GameManager(mainCanvasCtx);
+
 /** Timestamp is needed for making sure that the drawing consistently happen every certain interval
  * Timestamp is used to compare how many ms elapsed since last render
  * if certain ms is achieved, only then does the window do the rerender
  * When the animation first run, the `timestamp` is undefined. It is defined once the `requestAnimationFrame` is called
  * */
-
-window.addEventListener("keydown", (e) => {
-  switch (e.keyCode) {
-    case 38:
-      birdPlayer.moveUp();
-      break;
-    case 40:
-      birdPlayer.moveDown();
-      break;
-    case 37:
-      birdPlayer.moveLeft();
-      break;
-    case 39:
-      birdPlayer.moveRight();
-      break;
-    default:
-      break;
-  }
-});
-
 (function animate(timestamp) {
   mainCanvasCtx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 
+  game.animateBackgrounds();
+  game.detectCollision();
+
   birdPlayer.animate();
   birdPlayer.draw();
-
-  detectCollision();
 
   // delta time
   let dT = timestamp - lastTimeElapsed;
@@ -66,18 +112,3 @@ window.addEventListener("keydown", (e) => {
 
   requestAnimationFrame(animate);
 })(0);
-
-function detectCollision() {
-  ghosts.forEach((ghost, i) => {
-    const isCollided =
-      birdPlayer.x > ghost.x + ghost.width &&
-      birdPlayer.x + birdPlayer.width > ghost.x &&
-      birdPlayer.y < ghost.y + ghost.height &&
-      birdPlayer.y + birdPlayer.height < ghost.y;
-
-    if (isCollided) {
-      console.log("HELLO");
-      ghosts.splice(i, 1);
-    }
-  });
-}

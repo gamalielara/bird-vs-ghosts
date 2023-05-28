@@ -10,7 +10,7 @@ export class Bird {
     this.framesCount = 11;
     this.frame = 0;
     this.birdImages = [];
-    this.stagger = 5;
+    this.stagger = 1;
     this.animateCount = 0;
 
     this.constructBirdImages();
@@ -33,6 +33,7 @@ export class Bird {
   }
 
   draw() {
+    // mainCanvasCtx.strokeRect(this.x, this.y, this.width, this.height); // For collision debugging
     mainCanvasCtx.drawImage(
       this.birdImages[this.frame],
       this.x,
@@ -44,25 +45,25 @@ export class Bird {
 
   moveUp() {
     if (this.y > 0) {
-      this.y -= 15;
+      this.y -= 20;
     }
   }
 
   moveDown() {
     if (this.y < CANVAS_HEIGHT - this.height) {
-      this.y += 15;
+      this.y += 20;
     }
   }
 
   moveLeft() {
     if (this.x > 0) {
-      this.x -= 15;
+      this.x -= 20;
     }
   }
 
   moveRight() {
     if (this.x < CANVAS_WIDTH - this.width) {
-      this.x += 15;
+      this.x += 20;
     }
   }
 }

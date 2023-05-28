@@ -49,6 +49,8 @@ export class Ghost {
   }
 
   draw() {
+    // mainCanvasCtx.strokeRect(this.x, this.y, this.width, this.height); // For collision debugging
+
     mainCanvasCtx.drawImage(
       this.ghostImages[this.frame],
       this.x,
