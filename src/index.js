@@ -1,13 +1,26 @@
-import { BackgroundLayer } from "./backgroundLayer.js";
-import { Bird } from "./bird.js";
-import { Explosion } from "./explosion.js";
-import { Ghost } from "./ghost.js";
+import "./styles/main.css";
+import { BackgroundLayer } from "./script/backgroundLayer.js";
+import { Bird } from "./script/bird.js";
+import { Explosion } from "./script/explosion.js";
+import { Ghost } from "./script/ghost.js";
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
-  canvasEl,
   mainCanvasCtx,
-} from "./mainCanvas.js";
+} from "./script/mainCanvas.js";
+
+import Bg_1 from "./assets/background/1.png";
+import Bg_2 from "./assets/background/2.png";
+import Bg_3 from "./assets/background/3.png";
+import Bg_4 from "./assets/background/4.png";
+import Bg_5 from "./assets/background/5.png";
+import Bg_6 from "./assets/background/6.png";
+import Bg_7 from "./assets/background/7.png";
+import Bg_8 from "./assets/background/8.png";
+import Bg_9 from "./assets/background/9.png";
+import BgSound from "./assets/sound/bg.mp3";
+
+const bgImages = [Bg_1, Bg_2, Bg_3, Bg_4, Bg_5, Bg_6, Bg_7, Bg_8, Bg_9];
 
 let timeToDrawNextGhost = 0;
 let lastTimeElapsed = 0;
@@ -30,9 +43,9 @@ class GameManager {
   }
 
   setBackgroundImage() {
-    for (let i = 1; i < 10; i++) {
+    for (let i = 0; i < bgImages.length; i++) {
       const bg = new Image();
-      bg.src = `./background/${i}.png`;
+      bg.src = bgImages[i];
 
       this.backgrounds.push(bg);
     }
@@ -146,7 +159,7 @@ if (confirm("Press space to listen to some cool music!!")) {
   window.addEventListener("keydown", (e) => {
     if (e.key === " ") {
       const bgAudio = new Audio();
-      bgAudio.src = "./sound/bg.mp3";
+      bgAudio.src = BgSound;
       bgAudio.loop = true;
       bgAudio.play();
     }

@@ -1,4 +1,6 @@
 import { mainCanvasCtx } from "./mainCanvas.js";
+import ExplosionSound from "../assets/sound/explosion.wav";
+import ExplosionSprites from "../assets/sprites/explosion.png";
 
 export class Explosion {
   constructor(x, y) {
@@ -9,12 +11,12 @@ export class Explosion {
     this.x = x - this.width / 2;
     this.y = y - this.height / 2;
     this.image = new Image();
-    this.image.src = "./sprites/explosion.png";
+    this.image.src = ExplosionSprites;
     this.frame = 0;
     this.context = mainCanvasCtx;
     this.timer = 0;
     this.sound = new Audio();
-    this.sound.src = "./sound/explosion.wav";
+    this.sound.src = ExplosionSound;
   }
 
   update() {
