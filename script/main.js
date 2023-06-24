@@ -1,7 +1,13 @@
 import { BackgroundLayer } from "./backgroundLayer.js";
 import { Bird } from "./bird.js";
+import { Explosion } from "./explosion.js";
 import { Ghost } from "./ghost.js";
-import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "./mainCanvas.js";
+import {
+  CANVAS_HEIGHT,
+  CANVAS_WIDTH,
+  canvasEl,
+  mainCanvasCtx,
+} from "./mainCanvas.js";
 
 let timeToDrawNextGhost = 0;
 let lastTimeElapsed = 0;
@@ -12,6 +18,7 @@ const drawNextGhostInterval = 500;
 const birdPlayer = new Bird();
 
 let ghosts = [];
+const explosions = [];
 
 class GameManager {
   constructor(context) {
@@ -49,6 +56,7 @@ class GameManager {
 
       if (isCollided) {
         ghosts.splice(i, 1);
+        explosions.push(new Explosion(ghost.x, ghost.y));
       }
     });
   }
@@ -110,5 +118,37 @@ const game = new GameManager(mainCanvasCtx);
   // Delete ghosts that has left the screen
   ghosts = ghosts.filter((ghost) => !ghost.isLeftTheScreen);
 
+  // draw explosion
+  [...Array(explosions.length).keys()].forEach((i) => {
+    if (!explosions[i]) return;
+
+    explosions[i].update();
+    explosions[i].draw();
+
+    if (explosions[i].frame > 5) {
+      explosions.splice(i, 1);
+      i--;
+    }
+  });
+
   requestAnimationFrame(animate);
 })(0);
+
+// window.addEventListener("click", (e) => {
+//   const { left, top } = canvasEl.getBoundingClientRect();
+
+//   const xPos = e.x - left;
+//   const yPos = e.y - top;
+
+//   explosions.push(new Explosion(xPos, yPos));
+// });
+if (confirm("Press space to listen to some cool music!!")) {
+  window.addEventListener("keydown", (e) => {
+    if (e.key === " ") {
+      const bgAudio = new Audio();
+      bgAudio.src = "./sound/bg.mp3";
+      bgAudio.loop = true;
+      bgAudio.play();
+    }
+  });
+}

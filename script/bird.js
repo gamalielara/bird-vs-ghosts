@@ -10,9 +10,8 @@ export class Bird {
     this.framesCount = 11;
     this.frame = 0;
     this.birdImages = [];
-    this.stagger = 1;
-    this.animateCount = 0;
-
+    this.stagger = 5;
+    this.animateCount = 10;
     this.constructBirdImages();
   }
 
