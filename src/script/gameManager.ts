@@ -130,7 +130,5 @@ export class GameManager extends IGameManager {
                 i--;
             }
         });
-
-        requestAnimationFrame(this.begin);
     }
 }

@@ -8,7 +8,11 @@ import {GameManager} from "<script>/gameManager";
 
 const game = new GameManager(mainCanvasCtx);
 
-game.begin(0);
+(function initGame(timestamp){
+  game.begin(timestamp);
+
+  requestAnimationFrame(initGame)
+})(0);
 
 if (confirm("Press space to listen to some cool music!!")) {
   window.addEventListener("keydown", (e) => {
