@@ -1,9 +1,11 @@
-import { mainCanvasCtx } from "./mainCanvas.js";
+import { mainCanvasCtx } from "./utils/constants/mainCanvas";
 import ExplosionSound from "../assets/sound/explosion.wav";
-import ExplosionSprites from "../assets/sprites/explosion.png";
+import { EXPLOSION_SPRITE_IMAGE } from "./utils/constants/sprites";
+import {IExplosion} from "./utils/types";
 
-export class Explosion {
-  constructor(x, y) {
+export class Explosion extends IExplosion{
+  constructor(x:number, y:number) {
+    super();
     this.spriteWidth = 200;
     this.spriteHeight = 179;
     this.width = this.spriteWidth * 0.7;
@@ -11,7 +13,7 @@ export class Explosion {
     this.x = x - this.width / 2;
     this.y = y - this.height / 2;
     this.image = new Image();
-    this.image.src = ExplosionSprites;
+    this.image.src = EXPLOSION_SPRITE_IMAGE;
     this.frame = 0;
     this.context = mainCanvasCtx;
     this.timer = 0;

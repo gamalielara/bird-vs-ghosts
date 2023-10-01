@@ -1,4 +1,4 @@
-export const canvasEl = document.getElementById("main-canvas");
+export const canvasEl = document.getElementById("main-canvas") as HTMLCanvasElement;
 
 canvasEl.width = window.innerWidth;
 canvasEl.height = window.innerHeight;

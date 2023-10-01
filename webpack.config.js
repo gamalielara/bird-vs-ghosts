@@ -4,7 +4,7 @@ const path = require("path");
 module.exports = {
   mode: "production",
   entry: {
-    hehehehehe: path.resolve(__dirname, "src/index.js"),
+    hehehehehe: path.resolve(__dirname, "src/index"),
   },
   output: {
     path: path.resolve(__dirname, "dist"),
@@ -32,7 +32,15 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|mp3|wav)/i,
         type: "asset/resource",
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
     new HTMLWebpackPlugin({

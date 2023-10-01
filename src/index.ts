@@ -1,26 +1,19 @@
 import "./styles/main.css";
-import { BackgroundLayer } from "./script/backgroundLayer.js";
-import { Bird } from "./script/bird.js";
-import { Explosion } from "./script/explosion.js";
-import { Ghost } from "./script/ghost.js";
+import { BackgroundLayer } from "./script/backgroundLayer";
+import { Bird } from "./script/bird";
+import { Explosion } from "./script/explosion";
+import { Ghost } from "./script/ghost";
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
   mainCanvasCtx,
-} from "./script/mainCanvas.js";
+} from "./script/utils/constants/mainCanvas";
 
-import Bg_1 from "./assets/background/1.png";
-import Bg_2 from "./assets/background/2.png";
-import Bg_3 from "./assets/background/3.png";
-import Bg_4 from "./assets/background/4.png";
-import Bg_5 from "./assets/background/5.png";
-import Bg_6 from "./assets/background/6.png";
-import Bg_7 from "./assets/background/7.png";
-import Bg_8 from "./assets/background/8.png";
-import Bg_9 from "./assets/background/9.png";
 import BgSound from "./assets/sound/bg.mp3";
+import {BACKGROUND_IMAGES} from "./script/utils/constants/sprites";
+import {IGameManager} from "./script/utils/types";
 
-const bgImages = [Bg_1, Bg_2, Bg_3, Bg_4, Bg_5, Bg_6, Bg_7, Bg_8, Bg_9];
+
 
 let timeToDrawNextGhost = 0;
 let lastTimeElapsed = 0;
@@ -33,8 +26,9 @@ const birdPlayer = new Bird();
 let ghosts = [];
 const explosions = [];
 
-class GameManager {
+class GameManager extends IGameManager{
   constructor(context) {
+    super();
     this.context = context;
     this.backgrounds = [];
 
@@ -43,14 +37,16 @@ class GameManager {
   }
 
   setBackgroundImage() {
-    for (let i = 0; i < bgImages.length; i++) {
-      const bg = new Image();
-      bg.src = bgImages[i];
+    const bgImages = [];
 
-      this.backgrounds.push(bg);
+    for (let i = 0; i < BACKGROUND_IMAGES.length; i++) {
+      const bg = new Image();
+      bg.src = BACKGROUND_IMAGES[i];
+
+      bgImages.push(bg);
     }
 
-    this.backgrounds = this.backgrounds.map(
+    this.backgrounds = bgImages.map(
       (bg, i) => new BackgroundLayer(this.context, bg, 1 * (i + 1))
     );
   }

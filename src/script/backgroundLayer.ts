@@ -1,7 +1,9 @@
-import { CANVAS_HEIGHT } from "./mainCanvas.js";
+import { CANVAS_HEIGHT } from "./utils/constants/mainCanvas";
+import {IBackgroundLayer} from "./utils/types";
 
-export class BackgroundLayer {
+export class BackgroundLayer extends IBackgroundLayer{
   constructor(context, image, speed) {
+    super();
     this.context = context;
     this.image = image;
     this.speed = speed;
