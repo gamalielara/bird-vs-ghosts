@@ -1,6 +1,6 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "./utils/constants/mainCanvas";
-import {GHOST_SPRITE_IMAGES} from "./utils/constants/sprites";
-import {IGhost} from "./utils/types";
+import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "<utils>/constants/mainCanvas";
+import {GHOST_SPRITE_IMAGES} from "<utils>/constants/sprites";
+import {IGhost} from "<utils>/types";
 
 
 export class Ghost extends IGhost {

@@ -1,5 +1,5 @@
-import { CANVAS_HEIGHT } from "./utils/constants/mainCanvas";
-import {IBackgroundLayer} from "./utils/types";
+import { CANVAS_HEIGHT } from "<utils>/constants/mainCanvas";
+import {IBackgroundLayer} from "<utils>/types";
 
 export class BackgroundLayer extends IBackgroundLayer{
   constructor(context, image, speed) {

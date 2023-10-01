@@ -1,6 +1,6 @@
-import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "./utils/constants/mainCanvas";
-import {BIRD_SPRITE_IMAGES} from "./utils/constants/sprites";
-import {IBird} from "./utils/types";
+import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "<utils>/constants/mainCanvas";
+import {BIRD_SPRITE_IMAGES} from "<utils>/constants/sprites";
+import {IBird} from "<utils>/types";
 
 
 export class Bird extends IBird {

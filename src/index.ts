@@ -1,17 +1,17 @@
 import "./styles/main.css";
-import { BackgroundLayer } from "./script/backgroundLayer";
-import { Bird } from "./script/bird";
-import { Explosion } from "./script/explosion";
-import { Ghost } from "./script/ghost";
+import { BackgroundLayer } from "<script>/backgroundLayer";
+import { Bird } from "<script>/bird";
+import { Explosion } from "<script>/explosion";
+import { Ghost } from "<script>/ghost";
 import {
   CANVAS_HEIGHT,
   CANVAS_WIDTH,
   mainCanvasCtx,
-} from "./script/utils/constants/mainCanvas";
+} from "<utils>/constants/mainCanvas";
 
-import BgSound from "./assets/sound/bg.mp3";
-import {BACKGROUND_IMAGES} from "./script/utils/constants/sprites";
-import {IGameManager} from "./script/utils/types";
+import BgSound from "<assets>/sound/bg.mp3";
+import {BACKGROUND_IMAGES} from "<utils>/constants/sprites";
+import {IGameManager} from "<utils>/types";
 
 
 

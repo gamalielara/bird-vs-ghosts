@@ -1,7 +1,7 @@
-import { mainCanvasCtx } from "./utils/constants/mainCanvas";
+import { mainCanvasCtx } from "<utils>/constants/mainCanvas";
 import ExplosionSound from "../assets/sound/explosion.wav";
-import { EXPLOSION_SPRITE_IMAGE } from "./utils/constants/sprites";
-import {IExplosion} from "./utils/types";
+import { EXPLOSION_SPRITE_IMAGE } from "<utils>/constants/sprites";
+import {IExplosion} from "<utils>/types";
 
 export class Explosion extends IExplosion{
   constructor(x:number, y:number) {
