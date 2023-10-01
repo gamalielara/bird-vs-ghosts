@@ -8,11 +8,11 @@
     "allowJs": true,
     "moduleResolution": "node",
     "downlevelIteration": true,
-    "baseUrl": "src",
+    "baseUrl": "./",
     "paths": {
-      "<utils>/*": ["script/utils/*"],
-      "<assets>/*": ["assets/*"],
-      "<script>/*": ["script/*"],
+      "<utils>/*": ["src/script/utils/*"],
+      "<assets>/*": ["src/assets/*"],
+      "<script>/*": ["src/script/*"]
     }
   }
 }
