@@ -60,6 +60,6 @@ export const GHOST_SPRITE_IMAGES = [
     Ghost_10,
 ];
 
-export const BACKGROUND_IMAGES = [Bg_1, Bg_2, Bg_3, Bg_4, Bg_5, Bg_6, Bg_7, Bg_8, Bg_9];
+export const BACKGROUND_IMAGES = [ Bg_1, Bg_2, Bg_3, Bg_4, Bg_5, Bg_6, Bg_7, Bg_8, Bg_9 ];
 
 export const EXPLOSION_SPRITE_IMAGE = explosionSpritesImage;

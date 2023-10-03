@@ -10,9 +10,15 @@
     "downlevelIteration": true,
     "baseUrl": "./",
     "paths": {
-      "<utils>/*": ["src/script/utils/*"],
-      "<assets>/*": ["src/assets/*"],
-      "<script>/*": ["src/script/*"]
+      "<utils>/*": [
+        "src/script/utils/*"
+      ],
+      "<assets>/*": [
+        "src/assets/*"
+      ],
+      "<script>/*": [
+        "src/script/*"
+      ]
     }
   }
 }

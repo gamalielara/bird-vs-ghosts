@@ -1,10 +1,10 @@
-import {IGameManager} from "<utils>/types";
-import {BACKGROUND_IMAGES} from "<utils>/constants/sprites";
-import {BackgroundLayer} from "<script>/backgroundLayer";
-import {Explosion} from "<script>/explosion";
-import {CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx} from "<utils>/constants/mainCanvas";
-import {Ghost} from "<script>/ghost";
-import {Bird} from "<script>/bird";
+import { IGameManager } from "<utils>/types";
+import { BACKGROUND_IMAGES } from "<utils>/constants/sprites";
+import { BackgroundLayer } from "<script>/backgroundLayer";
+import { Explosion } from "<script>/explosion";
+import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "<utils>/constants/mainCanvas";
+import { Ghost } from "<script>/ghost";
+import { Bird } from "<script>/bird";
 
 export class GameManager extends IGameManager {
     timeToDrawNextGhost = 0;
@@ -32,7 +32,7 @@ export class GameManager extends IGameManager {
     setBackgroundImage() {
         const bgImages = [];
 
-        for (let i = 0; i < BACKGROUND_IMAGES.length; i++) {
+        for ( let i = 0; i < BACKGROUND_IMAGES.length; i++ ) {
             const bg = new Image();
             bg.src = BACKGROUND_IMAGES[i];
 
@@ -40,7 +40,7 @@ export class GameManager extends IGameManager {
         }
 
         this.backgrounds = bgImages.map(
-            (bg, i) => new BackgroundLayer(this.context, bg, 1 * (i + 1))
+            (bg, i) => new BackgroundLayer(this.context, bg, 1 * ( i + 1 ))
         );
     }
 
@@ -56,7 +56,7 @@ export class GameManager extends IGameManager {
                 this.birdPlayer.y < ghost.y + ghost.height &&
                 this.birdPlayer.y + this.birdPlayer.height > ghost.y;
 
-            if (isCollided) {
+            if ( isCollided ) {
                 this.ghosts.splice(i, 1);
                 this.explosions.push(new Explosion(ghost.x, ghost.y));
             }
@@ -104,13 +104,13 @@ export class GameManager extends IGameManager {
         this.lastTimeElapsed = timestamp;
         this.timeToDrawNextGhost += dT;
 
-        if (this.timeToDrawNextGhost > this.drawNextGhostInterval) {
+        if ( this.timeToDrawNextGhost > this.drawNextGhostInterval ) {
             this.ghosts.push(new Ghost());
             this.timeToDrawNextGhost = 0;
             this.ghosts.sort((a, b) => a.width - b.width);
         }
 
-        this.ghosts.forEach((ghost) => {
+        this.ghosts.forEach((ghost: Ghost) => {
             ghost.animateAndMove();
             ghost.draw();
         });
@@ -119,13 +119,13 @@ export class GameManager extends IGameManager {
         this.ghosts = this.ghosts.filter((ghost) => !ghost.isLeftTheScreen);
 
         // draw explosion
-        [...Array(this.explosions.length).keys()].forEach((i) => {
-            if (!this.explosions[i]) return;
+        [ ...Array(this.explosions.length).keys() ].forEach((i) => {
+            if ( !this.explosions[i] ) return;
 
             this.explosions[i].update();
             this.explosions[i].draw();
 
-            if (this.explosions[i].frame > 5) {
+            if ( this.explosions[i].frame > 5 ) {
                 this.explosions.splice(i, 1);
                 i--;
             }

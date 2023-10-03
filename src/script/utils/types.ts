@@ -1,46 +1,46 @@
-import {BackgroundLayer} from "../backgroundLayer";
+import { BackgroundLayer } from "../backgroundLayer";
 
-export class IBackgroundLayer{
+export class IBackgroundLayer {
     context: CanvasRenderingContext2D;
     image: HTMLImageElement;
-    speed : number;
-    bgWidth : number;
-    x : number;
-    x2 : number;
+    speed: number;
+    bgWidth: number;
+    x: number;
+    x2: number;
 }
 
 export class IBird {
     id: string;
-    width : number
-    height : number
+    width: number
+    height: number
     x: number;
-    y : number
-    framesCount : number;
+    y: number
+    framesCount: number;
     frame: number
-    birdImages : HTMLImageElement[];
-    stagger : number;
+    birdImages: HTMLImageElement[];
+    stagger: number;
     animateCount: number;
     displacementX: number;
     displacementY: number;
 }
 
 export class IExplosion {
-    spriteWidth : number;
-    spriteHeight : number;
+    spriteWidth: number;
+    spriteHeight: number;
     width: number;
-    height : number;
-    x : number;
-    y : number;
+    height: number;
+    x: number;
+    y: number;
     image: HTMLImageElement;
-    frame : number;
-    context : CanvasRenderingContext2D;
-    timer : number;
+    frame: number;
+    context: CanvasRenderingContext2D;
+    timer: number;
     sound: HTMLAudioElement;
 }
 
 export class IGameManager {
     context: CanvasRenderingContext2D;
-    backgrounds : BackgroundLayer[];
+    backgrounds: BackgroundLayer[];
 }
 
 export class IGhost {
