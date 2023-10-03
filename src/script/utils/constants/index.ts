@@ -1,0 +1,1 @@
+export const DISPLACEMENT_SPEED = 10;

@@ -20,6 +20,8 @@ export class IBird {
     birdImages : HTMLImageElement[];
     stagger : number;
     animateCount: number;
+    displacementX: number;
+    displacementY: number;
 }
 
 export class IExplosion {

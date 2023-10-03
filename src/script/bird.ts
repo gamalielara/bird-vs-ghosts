@@ -1,6 +1,7 @@
 import { CANVAS_HEIGHT, CANVAS_WIDTH, mainCanvasCtx } from "<utils>/constants/mainCanvas";
 import {BIRD_SPRITE_IMAGES} from "<utils>/constants/sprites";
 import {IBird} from "<utils>/types";
+import {DISPLACEMENT_SPEED} from "<utils>/constants";
 
 
 export class Bird extends IBird {
@@ -18,6 +19,9 @@ export class Bird extends IBird {
     this.stagger = 5;
     this.animateCount = 10;
     this.constructBirdImages();
+
+    this.displacementX = 0;
+    this.displacementY = 0;
   }
 
   constructBirdImages() {
@@ -36,7 +40,17 @@ export class Bird extends IBird {
     this.animateCount++;
   }
 
+  update(){
+    this.x += this.displacementX;
+    this.y += this.displacementY;
+
+    this.displacementX = 0;
+    this.displacementY = 0;
+  }
+
   draw() {
+    this.update();
+
     // mainCanvasCtx.strokeRect(this.x, this.y, this.width, this.height); // For collision debugging
     mainCanvasCtx.drawImage(
       this.birdImages[this.frame],
@@ -49,25 +63,25 @@ export class Bird extends IBird {
 
   moveUp() {
     if (this.y > 0) {
-      this.y -= 20;
+      this.displacementY = DISPLACEMENT_SPEED * -1;
     }
   }
 
   moveDown() {
     if (this.y < CANVAS_HEIGHT - this.height) {
-      this.y += 20;
+      this.displacementY = DISPLACEMENT_SPEED;
     }
   }
 
   moveLeft() {
     if (this.x > 0) {
-      this.x -= 20;
+      this.displacementX = DISPLACEMENT_SPEED * -1;
     }
   }
 
   moveRight() {
     if (this.x < CANVAS_WIDTH - this.width) {
-      this.x += 20;
+      this.displacementX = DISPLACEMENT_SPEED;
     }
   }
 }
