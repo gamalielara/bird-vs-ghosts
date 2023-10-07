@@ -42,6 +42,7 @@ module.exports = {
       title: "bird vs ghosts by Ara Gamaliel",
       filename: "index.html",
       template: "src/index.html",
+      favicon: "src/assets/favicon.ico"
     }),
   ],
 };
